@@ -13,7 +13,36 @@ const debugGenerator = require("debug");
 const DEBUG = debugGenerator("css-blocks:ember-cli");
 
 const EMBER_MODULE_CONFIG = undefined;
-const GLIMMER_MODULE_CONFIG = require("@glimmer/application-pipeline/dist/lib/broccoli/default-module-configuration.js").default;
+const GLIMMER_MODULE_CONFIG = {
+  types: {
+    application: { definitiveCollection: 'main' },
+    component: { definitiveCollection: 'components' },
+    'component-test': { unresolvable: true },
+    helper: { definitiveCollection: 'components' },
+    'helper-test': { unresolvable: true },
+    renderer: { definitiveCollection: 'main' },
+    template: { definitiveCollection: 'components' }
+  },
+  collections: {
+    main: {
+      types: ['application', 'renderer']
+    },
+    components: {
+      group: 'ui',
+      types: ['component', 'component-test', 'template', 'helper', 'helper-test'],
+      defaultType: 'component',
+      privateCollections: ['utils']
+    },
+    styles: {
+      group: 'ui',
+      unresolvable: true
+    },
+    utils: {
+      unresolvable: true
+    }
+  }
+};
+
 GLIMMER_MODULE_CONFIG.types.stylesheet = { definitiveCollection: "components" };
 GLIMMER_MODULE_CONFIG.collections.components.types.push("stylesheet");
 
