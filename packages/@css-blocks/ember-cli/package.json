@@ -24,7 +24,6 @@
   "dependencies": {
     "@css-blocks/broccoli": "^0.24.0",
     "@css-blocks/glimmer": "^0.24.0",
-    "@glimmer/application-pipeline": "^0.15.0",
     "broccoli-concat": "^3.7.3",
     "broccoli-funnel": "^2.0.1",
     "broccoli-merge-trees": "^3.0.2",
